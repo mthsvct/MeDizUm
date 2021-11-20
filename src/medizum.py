@@ -9,6 +9,7 @@ class Medizum():
 		self.cidades = pd.read_csv('dados/cidades.csv')
 		self.estados = pd.read_csv('dados/estados.csv')
 		self.paises = pd.read_csv('dados/paises.csv')
+		self.cores = pd.read_csv('dados/cores.csv')
 
 
 	def sorteia(self, arq):
@@ -165,9 +166,60 @@ class Medizum():
 		return retorno
 
 
+	def cpf(self, qnt=1):
+		lista = []
+		while qnt > 0:
+			# 123.456.789-09
+			c = ''
+			for i in range(14):
+				if i in [3, 7]:
+					c = c + '.'
+				elif i == 11:
+					c = c + '-'
+				else:
+					c = c + str( randint(0,9) )
+
+			lista.append(c)
+			qnt -= 1
+
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+
+		return retorno
 
 
+	def buscaCOR(self, cor):
+		pass
 
 
+	def cor(self, qnt=1, hexadecimal=False, rgb=False):
+		lista = []
+		while qnt > 0:
+			cor = []
+
+			aux = self.sorteia(self.cores)
+
+			cor.append(aux[0])
+
+			if hexadecimal == True:
+				cor.append(aux[1])
+
+			if rgb == True:
+				cor.append( (f'{aux[2]},{aux[3]},{aux[4]}') )
+
+			lista.append(cor)
+			qnt -= 1
+
+		if len(lista) == 1:
+			if True in [hexadecimal, rgb]:
+				retorno = lista[0]
+			else:
+				retorno = lista[0][0]
+		else:
+			retorno = lista		
+
+		return retorno
 
 
