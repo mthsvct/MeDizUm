@@ -2,4 +2,6 @@ from medizum import Medizum
 
 diz = Medizum()
 
-for i in range(20): print( diz.sexo(2) )
+print('Sorteio de nomes de cidades do Piauí')
+for i in range(50):
+	print(f'{diz.cidade(cod_uf="PI")}')
