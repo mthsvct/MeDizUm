@@ -1,4 +1,5 @@
 import pandas as pd
+from PIL import Image
 from random import randint, uniform
 
 class Medizum():
@@ -190,10 +191,6 @@ class Medizum():
 		return retorno
 
 
-	def buscaCOR(self, cor):
-		pass
-
-
 	def cor(self, qnt=1, hexadecimal=False, rgb=False):
 		lista = []
 		while qnt > 0:
@@ -207,7 +204,7 @@ class Medizum():
 				cor.append(aux[1])
 
 			if rgb == True:
-				cor.append( (f'{aux[2]},{aux[3]},{aux[4]}') )
+				cor.append( (aux[2], aux[3], aux[4]) )
 
 			lista.append(cor)
 			qnt -= 1
@@ -221,5 +218,62 @@ class Medizum():
 			retorno = lista		
 
 		return retorno
+
+
+	def buscaCOR(self, cor):
+		ini = 0
+		fim = len(self.cores) - 1
+		trava = 0
+		retorno = None
+		while ini <= fim and trava == 0:
+			
+			meio = ini + (fim - ini)//2
+
+
+			#print( f'self.cores.loc[meio][0].upper() = {self.cores.loc[meio][0].upper()}')
+			#print( f'cor.upper() = {cor.upper()} \n' )
+
+			if self.cores.loc[meio][0].upper() == cor.upper():
+				aux = self.cores.loc[meio]
+				retorno = [ aux[0], (aux[2], aux[3], aux[4]) ]
+				trava = 1
+			elif self.cores.loc[meio][0].upper() > cor.upper():
+				fim = meio - 1
+			elif self.cores.loc[meio][0].upper() < cor.upper():
+				ini = meio + 1
+
+		return retorno
+
+
+	def imagem(self, qnt=1, cor=None, rgb=None, largura=500, altura=500):
+		lista = []
+		while qnt > 0:
+			if rgb == None and cor == None:
+				aux = self.cor(rgb=True)
+				imagem = Image.new( "RGB", (largura, altura), aux[1])
+
+			elif rgb == None and cor != None:
+				aux = self.buscaCOR(cor)
+				if aux != None:
+					imagem = Image.new( "RGB", (largura, altura), aux[1])
+				else:
+					imagem = Image.new( "RGB", (largura, altura), 0)
+
+			elif rgb != None and cor == None:
+				imagem = Image.new( "RGB", (largura, altura), rgb)
+
+			lista.append(imagem)
+			qnt -= 1
+
+		if len(lista) == 1:
+			retorno = lista[0]
+			#retorno.show()
+		else:
+			retorno = lista
+
+		return retorno
+
+
+
 
 

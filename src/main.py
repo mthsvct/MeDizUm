@@ -1,4 +1,8 @@
 from medizum import Medizum
+from PIL import Image
+import os
+from threading import Thread
+
 
 diz = Medizum()
 
@@ -16,6 +20,17 @@ for i in range(15):
 '''
 
 
+'''
 print('Sorteio de cores: ')
 for i in range(10):
-	print(f'{i}: \t{diz.cor(hexadecimal=True)}')
+	print(f'{i}: \t{diz.cor(rgb=True)}')
+'''
+
+
+
+print('Sorteio de imagens com cores diferentes: ')
+for i in range(10):
+	imagem = diz.imagem()
+	imagem.save("imagem"+str(i)+".png")
+	os.system("xdg-open imagem"+str(i)+".png")
+
