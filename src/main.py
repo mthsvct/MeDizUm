@@ -57,13 +57,16 @@ for i in range(3):
 '''
 
 
-
+'''
 print('Sorteio de emails:')
 for i in range(3):
 	print(diz.email())
 	print(diz.email(nome='jorge'))
 	print(diz.email(3))
 	print('-'*15)
+'''
 
+print('Sorteio de um arquivo: ')
+diz.arquivo()
 
 

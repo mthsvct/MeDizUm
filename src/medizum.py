@@ -340,3 +340,69 @@ class Medizum():
 			retorno = lista
 
 		return retorno
+
+
+	def sorteiaCONT(self, arq, linhas):
+		for i in range(linhas):
+
+			'''
+			1 - nome completo
+			2 - nome
+			3 - idade
+			4 - email
+			5 - altura
+			6 - cidade
+			7 - estado
+			8 - pais
+			9 - cpf
+			10 - cor
+			'''
+
+			op = randint(1, 10)
+
+			if op == 1:
+				arq.write(f'Nome Completo = {self.nome()}')
+			elif op == 2:
+				arq.write(f'Nome = {self.nome(sobrenome=False)}')
+			elif op == 3:
+				arq.write(f'Idade = {self.idade()} anos')
+			elif op == 4:
+				arq.write(f'Email = {self.email()}')
+			elif op == 5:
+				arq.write(f'Altura = {self.altura()} m')
+			elif op == 6:
+				arq.write(f'Cidade = {self.cidade()}')
+			elif op == 7:
+				arq.write(f'Estado = {self.estado()}')
+			elif op == 8:
+				arq.write(f'Pais = {self.pais()}')
+			elif op == 9:
+				arq.write(f'CPF = {self.cpf()}')
+			else:
+				arq.write(f'Cor = {self.cor()}')
+
+			arq.write('\n')
+
+
+	def arquivo(self, qnt=1, linhas=50):
+		lista = []
+		i = 0
+		while qnt > 0:
+			arq = open(f"arquivo{i}.txt", "w")
+			arq = self.sorteiaCONT(arq, linhas)
+			lista.append(arq)
+			i += 1
+			qnt -= 1
+
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+
+		return retorno
+
+
+
+
+
+
