@@ -274,6 +274,69 @@ class Medizum():
 		return retorno
 
 
+	def idade(self, qnt=1, minimo=1, maximo=80, crianca=False, adolescente=False, adulto=False, idoso=False):
+		lista = []
+		while qnt > 0:
+			if crianca == True:
+				lista.append(randint(1, 12))
+			elif adolescente == True:
+				lista.append(randint(13, 18))
+			elif adulto == True:
+				lista.append(randint(18, 59))
+			elif idoso == True:
+				lista.append(randint(60, 100))
+			else:
+				lista.append(randint(minimo, maximo))
+			qnt -= 1
+
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+
+		return retorno
 
 
+	def altura(self, qnt=1, minimo=0.5, maximo=1.90):
+		lista = []
+		while qnt > 0:
+			lista.append( round( uniform(minimo, maximo), 2 ) )
+			qnt -= 1
 
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+
+		return retorno
+
+
+	def email(self, qnt=1, nome=''):
+		lista = []
+		while qnt > 0:
+
+			if nome == '':
+				n = self.nome(sobrenome=False)
+			else:
+				n = nome
+
+			e = (f'{n}{randint(0,9)}{randint(0,9)}{randint(0,9)}')
+
+			i = randint(1,3)
+
+			if i == 1:
+				e = e + ('@gmail.com')
+			elif i == 2:
+				e = e + ('@hotmail.com')
+			else:
+				e = e + ('@outlook.com')
+
+			lista.append(e)
+			qnt -= 1
+
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+
+		return retorno
