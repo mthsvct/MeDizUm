@@ -400,9 +400,54 @@ class Medizum():
 			retorno = lista
 
 		return retorno
+	
+	def rg(self, qnt=1):
+		lista = []
+		while qnt > 0:
+			c = ''
+			for i in range(12):
+				if i in [2, 6]:
+					c = c + '.'
+				elif i == 10:
+					c = c + '-'
+				elif i == 0:
+					c = c + str(randint(1,9))
+				else:
+					c = c + str(randint(0,9))
+			lista.append(c)
+			qnt -= 1
 
-
-
-
-
-
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+		return retorno
+	
+	def senhas(self, qnt=1, numeros = True, minu = True, maiu = True, special = True,maxi = 8):
+		l = []
+		n = "0123456789"
+		mi = "abcdefghijklmnopqrstuvwxyz"
+		ma = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		sp = "!@#$%&*()-+.,;?{[}]^><:"
+		lista = ''
+		if(numeros):
+			lista = lista + n
+		if(minu):
+			lista = lista + mi
+		if(maiu):
+			lista = lista + ma
+		if(special):
+			lista = lista + sp
+		mix = len(lista)
+		while qnt > 0:
+			c = ''
+			for i in range(maxi):
+				x = randint(0,mix-1)
+				c = c + lista[x]
+			l.append(c)
+			qnt -= 1
+		if len(lista) == 1:
+			retorno = l[0]
+		else:
+			retorno = l
+		return retorno
