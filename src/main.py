@@ -66,7 +66,25 @@ for i in range(3):
 	print('-'*15)
 '''
 
+'''
 print('Sorteio de um arquivo: ')
 diz.arquivo()
+'''
+
+'''
+print('Sorteio de dias: ')
+for i in range(3):
+	print(f'0 - {diz.dia()}')
+	print(f'1 - {diz.dia(fds=False)}')
+	print(f'2 - {diz.dia(util=False)}')
+	print(f'3 - {diz.dia(3)}')
+	print('-'*15)
+'''
+
+print('Sorteio de meses: ')
+for i in range(3):
+	print(f'{diz.mes()}')
+	print(f'{diz.mes(3)}')
+	print('-'*15)
 
 

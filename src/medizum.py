@@ -11,6 +11,8 @@ class Medizum():
 		self.estados = pd.read_csv('dados/estados.csv')
 		self.paises = pd.read_csv('dados/paises.csv')
 		self.cores = pd.read_csv('dados/cores.csv')
+		self.meses = pd.read_csv('dados/meses.csv')
+		self.dias = pd.read_csv('dados/dias.csv')
 
 
 	def sorteia(self, arq):
@@ -401,6 +403,7 @@ class Medizum():
 
 		return retorno
 	
+
 	def rg(self, qnt=1):
 		lista = []
 		while qnt > 0:
@@ -423,7 +426,8 @@ class Medizum():
 			retorno = lista
 		return retorno
 	
-	def senhas(self, qnt=1, numeros = True, minu = True, maiu = True, special = True,maxi = 8):
+
+	def senha(self, qnt=1, numeros = True, minu = True, maiu = True, special = True,maxi = 8):
 		l = []
 		n = "0123456789"
 		mi = "abcdefghijklmnopqrstuvwxyz"
@@ -452,7 +456,8 @@ class Medizum():
 			retorno = l
 		return retorno
 	
-	def telefones(self, qnt=1):
+
+	def telefone(self, qnt=1):
 		lista = []
 		while qnt > 0:
 			c = '89'
@@ -469,7 +474,8 @@ class Medizum():
 			retorno = lista
 		return retorno
 	
-	def precos(self, qnt= 1,mini = 0.00,maxi = 1000.00):
+
+	def preco(self, qnt= 1,mini = 0.00,maxi = 1000.00):
 		lista = []
 		while qnt > 0:
 			c = uniform(mini,maxi);
@@ -480,3 +486,51 @@ class Medizum():
 		else:
 			retorno = lista
 		return retorno
+
+
+	def dia(self, qnt=1, fds=True, util=True):
+		lista = []
+		while qnt > 0:
+
+			if fds == True and util == True:
+				aux = self.sorteia(self.dias)
+			elif util == False:
+				aux = []
+				n = randint(1, 2)
+				if n == 1: 
+					aux.append('Domingo')
+				else:
+					aux.append('Sábado')
+
+			else:
+				while True:
+					aux = self.sorteia(self.dias)
+					if aux[0] != 'Domingo' and aux[0] != 'Sábado':
+						break
+
+			lista.append( aux[0] )
+			qnt -= 1
+
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+
+		return retorno
+
+
+	def mes(self, qnt=1):
+		lista = []
+		while qnt > 0:
+			aux = self.sorteia(self.meses)
+			lista.append(aux[1])
+			qnt -= 1
+
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+
+		return retorno
+
+
