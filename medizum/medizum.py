@@ -6,16 +6,16 @@ from datetime import date
 class diz():
 
 	def __init__(self):
-		self.nomes_masc = pd.read_csv('dados/nomes_masculinos.csv')
-		self.nomes_fem = pd.read_csv('dados/nomes_femininos.csv')
-		self.produtos = pd.read_csv('dados/produtos.csv')
-		self.cidades = pd.read_csv('dados/cidades.csv')
-		self.estados = pd.read_csv('dados/estados.csv')
-		self.paises = pd.read_csv('dados/paises.csv')
-		self.signos = pd.read_csv('dados/signos.csv')
-		self.cores = pd.read_csv('dados/cores.csv')
-		self.meses = pd.read_csv('dados/meses.csv')		
-		self.dias = pd.read_csv('dados/dias.csv')
+		self.nomes_masc = pd.read_csv('https://raw.githubusercontent.com/taotamat/medizum/master/medizum/dados/nomes_masculinos.csv')
+		self.nomes_fem = pd.read_csv('https://raw.githubusercontent.com/taotamat/medizum/master/medizum/dados/nomes_femininos.csv')
+		self.produtos = pd.read_csv('https://raw.githubusercontent.com/taotamat/medizum/master/medizum/dados/produtos.csv')
+		self.cidades = pd.read_csv('https://raw.githubusercontent.com/taotamat/medizum/master/medizum/dados/cidades.csv')
+		self.estados = pd.read_csv('https://raw.githubusercontent.com/taotamat/medizum/master/medizum/dados/estados.csv')
+		self.paises = pd.read_csv('https://raw.githubusercontent.com/taotamat/medizum/master/medizum/dados/paises.csv')
+		self.signos = pd.read_csv('https://raw.githubusercontent.com/taotamat/medizum/master/medizum/dados/signos.csv')
+		self.cores = pd.read_csv('https://raw.githubusercontent.com/taotamat/medizum/master/medizum/dados/cores.csv')
+		self.meses = pd.read_csv('https://raw.githubusercontent.com/taotamat/medizum/master/medizum/dados/meses.csv')		
+		self.dias = pd.read_csv('https://raw.githubusercontent.com/taotamat/medizum/master/medizum/dados/dias.csv')
 		
 
 	def sorteia(self, arq):
