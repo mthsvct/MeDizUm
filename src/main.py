@@ -1,10 +1,10 @@
-from medizum import Medizum
+from medizum import diz
 from PIL import Image
 import os
 from threading import Thread
 
 
-diz = Medizum()
+diz = diz()
 
 '''
 print('Sorteio de nomes de cidades do Piauí')
@@ -81,10 +81,43 @@ for i in range(3):
 	print('-'*15)
 '''
 
+'''
 print('Sorteio de meses: ')
 for i in range(3):
 	print(f'{diz.mes()}')
 	print(f'{diz.mes(3)}')
 	print('-'*15)
+'''
 
+'''
+print('Sorteio de signos')
+for i in range(3):
+	print(f'{diz.signo()}')
+	print(f'{diz.signo(3)}')
+	print('-'*15)
+'''
+
+'''
+print('Sorteio de datas de nascimento: ')
+for i in range(3):
+	print(f'{diz.data_nascimento()}')
+	print(f'{diz.data_nascimento(crianca=True)}')
+	print(f'{diz.data_nascimento(adolescente=True)}')
+	print(f'{diz.data_nascimento(3)}')
+	print('-'*15)
+'''
+
+'''
+print('Sorteio de produtos: ')
+for i in range(3):
+	print(f'{diz.produto()}')
+	print(f'{diz.produto(3)}')
+	print('-' * 15)
+'''
+
+print('Sorteio de CEPS: ')
+for i in range(3):
+	print(f'{diz.cep()}')
+	print(f'{diz.cep(3)}')
+	print('-'*15)
 

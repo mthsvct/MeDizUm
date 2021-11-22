@@ -1,19 +1,22 @@
 import pandas as pd
 from PIL import Image
 from random import randint, uniform
+from datetime import date
 
-class Medizum():
+class diz():
 
 	def __init__(self):
 		self.nomes_masc = pd.read_csv('dados/nomes_masculinos.csv')
 		self.nomes_fem = pd.read_csv('dados/nomes_femininos.csv')
+		self.produtos = pd.read_csv('dados/produtos.csv')
 		self.cidades = pd.read_csv('dados/cidades.csv')
 		self.estados = pd.read_csv('dados/estados.csv')
 		self.paises = pd.read_csv('dados/paises.csv')
+		self.signos = pd.read_csv('dados/signos.csv')
 		self.cores = pd.read_csv('dados/cores.csv')
-		self.meses = pd.read_csv('dados/meses.csv')
+		self.meses = pd.read_csv('dados/meses.csv')		
 		self.dias = pd.read_csv('dados/dias.csv')
-
+		
 
 	def sorteia(self, arq):
 		i = randint(0, len(arq)-1)
@@ -488,6 +491,13 @@ class Medizum():
 		return retorno
 
 
+	def qnt_dias_mes(self, mes):
+		for i in range(len(self.meses)):
+			if self.meses.loc[i][0] == mes:
+				retorno = self.meses.loc[i][2]
+		return retorno
+
+
 	def dia(self, qnt=1, fds=True, util=True):
 		lista = []
 		while qnt > 0:
@@ -519,6 +529,28 @@ class Medizum():
 		return retorno
 
 
+	def dia_mes(self, qnt=1, mes=None):
+
+		lista = []
+
+		while qnt > 0:
+
+			if mes == None:
+				aux = randint(1,31)
+			else:
+				aux = randint(1,self.qnt_dias_mes(mes)) # Sorteia sabendo a quantidade exata de dias de um determinado mês.
+
+			lista.append(aux)
+			qnt -= 1
+
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+
+		return retorno
+
+
 	def mes(self, qnt=1):
 		lista = []
 		while qnt > 0:
@@ -532,5 +564,94 @@ class Medizum():
 			retorno = lista
 
 		return retorno
+
+
+	def signo(self, qnt=1):
+		lista = []
+		while qnt > 0:
+			aux = self.sorteia(self.signos)
+			lista.append(aux[0])
+			qnt -= 1
+
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+
+		return retorno
+
+
+	def data_nascimento(self, qnt=1, crianca=False, adolescente=False, adulto=False, idoso=False, idade=None):
+		lista = []
+		while qnt > 0:
+
+			if idade != None:
+				anos = idade
+			elif crianca == True:
+				anos = self.idade(crianca=True)
+			elif adolescente == True:
+				anos = self.idade(adolescente=True)
+			elif adulto == True:
+				anos = self.idade(adulto=True)
+			elif idoso == True:
+				anos = self.idade(idoso=True)
+			else:
+				anos = self.idade()
+
+			aux = str(date.today()).split('-') # Devolve uma lista com ano, mes e dia de hoje.
+
+			ano = int(aux[0]) - anos
+			mes = randint(1,12)
+			dia = self.dia_mes(mes=mes)
+
+			lista.append(f'{ano}-{mes}-{dia}')
+			qnt -= 1
+
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+
+		return retorno
+
+
+	def produto(self, qnt=1):
+		lista = []
+		while qnt > 0:
+			aux = self.sorteia(self.produtos)
+			lista.append(aux[0])
+			qnt -= 1
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+		return retorno
+
+
+	def cep(self,qnt=1):
+		lista = []
+		while qnt > 0:
+			c = ''
+			for i in range(9):
+				if i in [5]:
+					c = c + '-'
+				elif i == 0:
+					c = c + str(randint(1,9))
+				else:
+					c = c + str(randint(0,9))
+			lista.append(c)
+			qnt -= 1
+
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+		return retorno
+
+
+
+
+
+
 
 
