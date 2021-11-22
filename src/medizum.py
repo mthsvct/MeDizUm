@@ -451,3 +451,32 @@ class Medizum():
 		else:
 			retorno = l
 		return retorno
+	
+	def telefones(self, qnt=1):
+		lista = []
+		while qnt > 0:
+			c = '89'
+			for i in range(9):
+				if i < 2:
+					c = c + str(randint(8,9))
+				else:
+					c = c + str(randint(0,9))
+			lista.append(c)
+			qnt -= 1
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+		return retorno
+	
+	def precos(self, qnt= 1,mini = 0.00,maxi = 1000.00):
+		lista = []
+		while qnt > 0:
+			c = uniform(mini,maxi);
+			lista.append(c)
+			qnt -= 1
+		if len(lista) == 1:
+			retorno = lista[0]
+		else:
+			retorno = lista
+		return retorno
