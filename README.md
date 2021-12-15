@@ -37,7 +37,7 @@ Para utilizar é necessário ter instalado as bibliotecas:
 ## Exemplos de uso:
 
 ```
-from medizum import diz
+from medizum.medizum import diz
 diz = diz()
 print(diz.nome())
 print(diz.idade())
